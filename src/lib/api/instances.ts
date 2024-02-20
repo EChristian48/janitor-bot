@@ -1,6 +1,10 @@
 import { ofetch } from "ofetch";
 
-export const apiAuth = ofetch.create({
+export const janitorKim = ofetch.create({
+  baseURL: "https://kim.janitorai.com/",
+});
+
+export const janitorAuth = ofetch.create({
   baseURL: "https://auth.janitorai.com/auth/v1/",
   headers: {
     accept: "*/*",
