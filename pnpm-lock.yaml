@@ -23,9 +23,6 @@ dependencies:
   ofetch:
     specifier: ^1.3.3
     version: 1.3.3
-  tiktoken:
-    specifier: ^1.0.13
-    version: 1.0.13
   vite-node:
     specifier: ^1.3.0
     version: 1.3.0
@@ -34,9 +31,6 @@ devDependencies:
   '@types/lodash':
     specifier: ^4.14.202
     version: 4.14.202
-  '@types/uuid':
-    specifier: ^9.0.8
-    version: 9.0.8
   eslint:
     specifier: ^8.56.0
     version: 8.56.0
@@ -562,10 +556,6 @@ packages:
 
   /@types/semver@7.5.7:
     resolution: {integrity: sha512-/wdoPq1QqkSj9/QOeKkFquEuPzQbHTWAMPH/PaUMB+JuR31lXhlWXRZ52IpfDYVlDOUBvX09uBrPwxGT1hjNBg==}
-    dev: true
-
-  /@types/uuid@9.0.8:
-    resolution: {integrity: sha512-jg+97EGIcY9AGHJJRaaPVgetKDsrTgbRjQ5Msgjh/DQKEFl0DtyRr/VCOyD1T2R1MNeWPK/u7JoGhlDZnKBAfA==}
     dev: true
 
   /@types/ws@8.5.9:
@@ -1530,10 +1520,6 @@ packages:
   /text-table@0.2.0:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
     dev: true
-
-  /tiktoken@1.0.13:
-    resolution: {integrity: sha512-JaL9ZnvTbGFMDIBeGdVkLt4qWTeCPw+n7Ock+wceAGRenuHA6nOOvMJFliNDyXsjg2osGKJWsXtO2xc74VxyDw==}
-    dev: false
 
   /to-regex-range@5.0.1:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
