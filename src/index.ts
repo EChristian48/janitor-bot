@@ -1,13 +1,13 @@
 import { Client, Events, GatewayIntentBits } from "discord.js";
 import { commands } from "./commands";
 import { llm } from "./lib/api";
+import { LLMMessage } from "./lib/api/llm/types";
+import { CHARACTERS } from "./lib/character";
+import { ACTIVE_DATABASES, initDbDir } from "./lib/db";
+import { compressPrompts, formatPrompt, sanitizeMentions } from "./lib/prompt";
 import { secondsToMs } from "./lib/time";
 import { fetchToken } from "./lib/token";
 import { validateMessage } from "./lib/validate";
-import { CHARACTERS, fetchCharacter } from "./lib/character";
-import { ACTIVE_DATABASES, initCharDb, initDbDir } from "./lib/db";
-import { LLMMessage } from "./lib/api/llm/types";
-import { compressPrompts, sanitizeMentions } from "./lib/prompt";
 
 const characterUrl =
   "https://janitorai.com/characters/ddd1498a-a370-4136-b138-a8cd9461fdfe_character-aqua-the-useless-goddess";
@@ -59,21 +59,26 @@ client.on(Events.MessageCreate, async (message) => {
 
   let response = "";
 
-  const newMessages: Array<LLMMessage> = compressPrompts([
+  const newMessages: Array<LLMMessage> = [
     ...db.data.messages,
     { role: "user", content: sanitizeMentions(message.content) },
-  ]);
-
-  console.log(newMessages);
+  ];
 
   try {
-    response = await llm.generate({ messages: newMessages });
+    response = await llm.generate({ messages: compressPrompts(newMessages) });
     newMessages.push({ role: "assistant", content: response });
     db.update((data) => (data.messages = newMessages));
   } catch (e) {
     response = `Error: ${JSON.stringify(e)}`;
+    console.error(e);
   }
 
-  await message.reply(response);
+  await message.reply(
+    formatPrompt({
+      character,
+      prompt: response,
+      username: message.author.displayName,
+    })
+  );
   clearInterval(typingInterval);
 });

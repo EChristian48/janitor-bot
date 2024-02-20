@@ -76,7 +76,12 @@ export const compressPrompts = (prompts: Array<LLMMessage>) => {
   let isPastMaxTokens = false;
   let i = 0;
   while (!isPastMaxTokens) {
-    compressedPrompts.splice(1, 0, promptsWithoutFirst[i++]);
+    const lastMessage = promptsWithoutFirst[i++];
+
+    // No more messages to process, entire conversation fits within max tokens
+    if (!lastMessage) return compressedPrompts;
+
+    compressedPrompts.splice(1, 0, lastMessage);
 
     const promptString = compressedPrompts
       .map((prompt) => prompt.content)
