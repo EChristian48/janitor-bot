@@ -2,7 +2,7 @@ import { ChannelType, Message } from "discord.js";
 
 type MessageValidator = (message: Message<boolean>) => boolean;
 
-export const ALLOWED_CHANNELS = ["1208487548612251660"];
+export const ALLOWED_CHANNELS = ["1208487548612251660", "1206881640991825920"];
 
 export const validateMessage = (
   message: Message<boolean>
