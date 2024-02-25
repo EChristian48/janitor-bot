@@ -1,8 +1,6 @@
 import { minutesToMs } from "~/lib/time";
 import { auth } from "./api";
 
-const DURATION = minutesToMs(9);
-
 export let TOKEN = "";
 
 export const fetchToken = async () => {
@@ -10,7 +8,7 @@ export const fetchToken = async () => {
 
   setInterval(async () => {
     await updateToken();
-  }, DURATION);
+  }, minutesToMs(1));
 };
 
 const updateToken = async () => {

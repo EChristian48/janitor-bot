@@ -49,7 +49,7 @@ export const initCharDb = async (guildId: string, character: Character) => {
     await db.update((data) => (data.messages = firstMessages));
   }
 
-  if (!ACTIVE_DATABASES.has(guildId)) ACTIVE_DATABASES.set(guildId, db);
+  ACTIVE_DATABASES.set(guildId, db);
 
   return db;
 };

@@ -2,6 +2,7 @@ import { SlashCommandBuilder } from "discord.js";
 import { fetchCharacter } from "~/lib/character";
 import { initCharDb } from "~/lib/db";
 import { ImportedSlashCommand } from "..";
+import { Character } from "~/lib/api/kim";
 
 export const data = new SlashCommandBuilder()
   .setName("set")
@@ -19,7 +20,14 @@ export const execute: ImportedSlashCommand["execute"] = async (interaction) => {
 
   const url = interaction.options.getString("url") ?? "";
 
-  const character = await fetchCharacter(interaction.guildId, url);
+  let character: Character;
+
+  try {
+    character = await fetchCharacter(interaction.guildId, url);
+  } catch (error) {
+    return interaction.reply((error as Error).message);
+  }
+
   await initCharDb(interaction.guildId, character);
 
   await interaction.reply(`Character set to: ${character.name}`);

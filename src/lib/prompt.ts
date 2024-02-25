@@ -9,7 +9,9 @@ Avoid repetition in replies to {{user}}.
 
 [Write at least 1 medium paragraphs replies with each paragraph containing at least 2 sentences. 
 Do not act and talk as {{user}}. 
-Be creative and always drive the roleplay forward.].`;
+Be creative and always drive the roleplay forward.].
+
+Always respond with less than 1500 characters. The messages are optimized for Discord Application so each messages cannot exceed 1500 characters.`;
 
 export const promptPersonality = (character: Character) =>
   `{{char}}'s Persona: ${character.personality}`;

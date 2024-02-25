@@ -69,7 +69,7 @@ client.on(Events.MessageCreate, async (message) => {
     newMessages.push({ role: "assistant", content: response });
     db.update((data) => (data.messages = newMessages));
   } catch (e) {
-    response = `Error: ${JSON.stringify(e)}`;
+    response = `Error: ${(e as Error).message}`;
     console.error(e);
   }
 
